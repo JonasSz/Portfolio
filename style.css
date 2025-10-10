@@ -1,0 +1,742 @@
+/* Globale Stile & Reset */
+:root {
+    --primary-color: #007BFF;     /* Serioses Blau */
+    --accent-color: #FF5733;      /* Dezenter Akzent (z.B. für Hover/Animationen) */
+    --secondary-color: #212529;   /* Fast Schwarz (für Text) */
+    --background-light: #f8f9fa;  /* Heller Hintergrund für Sektionen */
+    --background-dark: #343a40;   /* Dunkler Hintergrund für Akzent-Sektionen */
+    --font-family: 'Inter', sans-serif;
+    --max-width: 1200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--secondary-color);
+    background-color: white;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Allgemeine CTA-Button-Klasse */
+.primary-cta, .cta-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
+    display: inline-block;
+}
+
+.primary-cta:hover, .cta-button:hover {
+    background-color: white;
+    color: var(--primary-color);
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* --- Header & Navigation --- */
+#main-header {
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+}
+
+.logo {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 35px;
+}
+
+.nav-links a:not(.cta-button) {
+    position: relative;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s;
+}
+
+/* --- Allgemeine Sektionen --- */
+section {
+    padding: 100px 0;
+    text-align: center;
+}
+
+section:nth-child(even) {
+    background-color: var(--background-light); 
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 60px;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 6px;
+    background: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 3px;
+}
+
+/* --- A. Hero-Sektion --- */
+.hero-section {
+    position: relative;
+    padding-top: 180px;
+    padding-bottom: 150px;
+    text-align: left;
+    color: var(--secondary-color);
+    background-color: white; 
+    overflow: hidden;
+}
+
+/* NEU/KORRIGIERT: Keyframes für die Wellen-Animation */
+@keyframes wave {
+    0% { background-position: 0% 0%; } /* Hinzugefügte % für korrekte Animation */
+    100% { background-position: 100% 100%; }
+}
+
+/* KORRIGIERT: Subtiler Wellen-Hintergrund */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; 
+    height: 200%;
+    /* Dezentes, sich wiederholendes Muster, jetzt mit geringerer Opazität für Subtilität */
+    background: radial-gradient(circle at 10% 20%, rgba(0, 123, 255, 0.1) 0%, transparent 50%), 
+                radial-gradient(circle at 80% 90%, rgba(0, 123, 255, 0.1) 0%, transparent 70%);
+    
+    background-size: 50% 50%;
+    animation: wave 40s linear infinite; 
+    z-index: 0;
+    opacity: 1; 
+    transform: rotate(10deg) translate(-25%, -25%); 
+}
+
+/* Overlay zur Text-Hervorhebung am unteren Rand */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.8) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section h1 {
+    font-size: 4.5rem;
+    max-width: 900px;
+    color: var(--secondary-color);
+    text-shadow: none;
+}
+
+.hero-section h1 strong {
+    color: var(--primary-color);
+}
+
+.hero-section .subline {
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+    max-width: 800px;
+    color: #555;
+}
+
+.performance-proof {
+    margin-top: 60px;
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    max-width: 800px;
+}
+
+.performance-proof span {
+    font-weight: 600;
+}
+
+.performance-proof span strong {
+    color: var(--primary-color);
+}
+
+.performance-proof span #load-time {
+    color: var(--primary-color);
+}
+
+/* --- B. Problem/Lösung Sektion --- */
+/* ... (keine Änderungen) ... */
+.problem-solution-section {
+    padding: 120px 0;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    text-align: left;
+}
+
+.stat-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--primary-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.stat-card p {
+    color: #555;
+}
+
+.stat-card p strong {
+    color: var(--primary-color);
+}
+
+
+/* --- C. Leistungen Sektion (Dunkel) --- */
+.services-section {
+    background-color: var(--background-dark);
+    color: white;
+}
+
+.services-section h2 {
+    color: white;
+}
+.services-section h2::after {
+    background: var(--primary-color);
+}
+
+.service-cards {
+    display: flex;
+    gap: 40px;
+    text-align: left;
+}
+
+.service-card {
+    flex: 1;
+    padding: 40px;
+    border-radius: 10px;
+    background: #495057;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s;
+}
+
+.service-card:hover {
+    background: #5a6268;
+}
+
+/* Hervorhebung für die primäre Leistung (Webentwicklung) */
+.service-card.dev {
+    background: #5a6268; 
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 30px rgba(0, 123, 255, 0.2);
+}
+
+.service-card.dev:hover {
+    background: #6c757d; 
+}
+
+
+.service-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+}
+
+.service-card ul {
+    list-style: none;
+}
+
+.service-card li {
+    padding: 12px 0;
+    border-bottom: 1px solid #6c757d;
+}
+
+.service-card li strong {
+    font-weight: 700;
+}
+
+.service-card li:before {
+    content: "⚡ ";
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-right: 10px;
+}
+/* ... (Rest der Sektionen und Footer bleibt unverändert) ... */
+/* --- D. Portfolio Sektion (hell) --- */
+
+.case-studies-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    text-align: left;
+}
+
+.case-study-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s, box-shadow 0.4s;
+    background: white;
+    position: relative;
+    cursor: pointer;
+}
+
+.case-study-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.case-study-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.case-study-content {
+    padding: 30px;
+}
+
+.case-study-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.case-study-card h3 strong {
+    color: var(--primary-color);
+}
+
+.case-study-card p {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.case-study-link {
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    position: relative;
+}
+
+.case-study-link::after {
+    content: " →";
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.case-study-card:hover .case-study-link::after {
+    opacity: 1;
+}
+
+/* --- E. Garantie Sektion --- */
+.guarantee-section {
+    background-color: var(--background-light);
+    padding: 80px 0;
+}
+
+.guarantee-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.guarantee-points > div {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-top: 3px solid var(--accent-color);
+}
+
+.guarantee-points h3 {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+
+/* --- F. Prozess Sektion --- */
+
+.process-section {
+    padding-bottom: 120px;
+}
+
+.process-steps {
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+    padding: 0 20px;
+}
+
+.step {
+    position: relative;
+    padding: 30px 15px;
+    border: none;
+    border-radius: 10px;
+    background: var(--background-light);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -15px; 
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: 300;
+    z-index: 10;
+}
+
+.step h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.step p strong {
+    font-weight: 700;
+}
+
+.about-me {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-me img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 40px;
+    border: 4px solid var(--primary-color);
+    flex-shrink: 0;
+}
+
+.about-me p {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+.about-me p strong {
+    font-weight: 700;
+}
+
+/* --- G. Kontakt Sektion (Dunkel) --- */
+
+.contact-section {
+    background-color: var(--background-dark);
+    color: white;
+}
+
+.contact-section h2 {
+    color: white;
+    margin-bottom: 30px;
+}
+
+.contact-section h2::after {
+    background: var(--primary-color);
+}
+
+#contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+#contact-form input, #contact-form textarea {
+    padding: 15px;
+    border: 1px solid #6c757d;
+    background: #495057;
+    color: white;
+    border-radius: 5px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+}
+
+#contact-form input::placeholder, #contact-form textarea::placeholder {
+    color: #adb5bd;
+}
+
+#contact-form button {
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.contact-section .small-text {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.contact-section .small-text strong {
+    color: #28a745;
+}
+
+/* --- Footer --- */
+
+footer {
+    background-color: var(--secondary-color);
+    color: #adb5bd;
+    padding: 25px 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+footer a {
+    color: #adb5bd;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+}
+
+/* ------------------------------------------- */
+/* --- WICHTIG: RESPONSIVE ANPASSUNGEN --- */
+/* ------------------------------------------- */
+
+/* Allgemein kleinere Überschriften auf kleinen Bildschirmen */
+@media (max-width: 900px) {
+    /* NAVIGATION: Mobile-Anpassung */
+    .nav-links {
+        display: none;
+        /* Hier müsste normalerweise ein Hamburger-Menü via JS/HTML integriert werden */
+    }
+    header nav {
+        justify-content: space-between;
+    }
+
+    /* HERO-SEKTION: Verbesserte Ausrichtung und Skalierung */
+    .hero-section {
+        padding-top: 100px;
+        padding-bottom: 80px;
+        text-align: center; 
+    }
+    
+    .hero-section h1 {
+        font-size: 3rem; 
+        max-width: 100%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.2;
+    }
+    
+    .hero-section .subline {
+        font-size: 1.3rem;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .performance-proof {
+        justify-content: center;
+        flex-direction: column; 
+        gap: 15px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Allgemeine Sektionen */
+    h2 { font-size: 2.2rem; }
+    section { padding: 80px 0; }
+
+    /* Grid-Layouts auf eine Spalte */
+    .stat-grid, .case-studies-grid, .guarantee-points {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    /* KORRIGIERT: Service-Karten müssen auf Mobile untereinander gestapelt werden */
+    .service-cards {
+        flex-direction: column; 
+        gap: 30px;
+    }
+
+
+    .process-steps {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 60px; 
+    }
+
+    /* Pfeil nach unten im mobilen Prozess-Flow */
+    .step:not(:last-child)::after {
+        content: "↓";
+        right: 50%;
+        left: 50%;
+        top: auto;
+        bottom: -30px;
+        transform: translateX(-50%);
+    }
+
+    .about-me {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-me img {
+        margin: 0 0 20px 0;
+    }
+}
+
+
+/* Spezielle Anpassungen für sehr kleine Bildschirme (Mobile First: 480px) */
+@media (max-width: 480px) {
+    .hero-section h1 { 
+        font-size: 2.2rem;
+    }
+    h2 { font-size: 1.8rem; }
+    .hero-section .subline { font-size: 1rem; }
+    .primary-cta { padding: 10px 20px; font-size: 0.9rem; }
+}
+
+
+/* --- CSS for Animations (JS-gesteuert) --- */
+/* ... (Animations-Klassen bleiben unverändert) ... */
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Gestaffelte Animationen für die neuen 3- und 4-Element-Grids */
+.stat-grid .stat-card:nth-child(1).hidden { transition-delay: 0s; }
+.stat-grid .stat-card:nth-child(2).hidden { transition-delay: 0.1s; }
+.stat-grid .stat-card:nth-child(3).hidden { transition-delay: 0.2s; }
+
+.guarantee-points > div:nth-child(1).hidden { transition-delay: 0s; }
+.guarantee-points > div:nth-child(2).hidden { transition-delay: 0.1s; }
+.guarantee-points > div:nth-child(3).hidden { transition-delay: 0.2s; }
+
+.service-cards .service-card:nth-child(1).hidden { transition-delay: 0s; }
+.service-cards .service-card:nth-child(2).hidden { transition-delay: 0.1s; }
+
+.case-studies-grid .case-study-card:nth-child(1).hidden { transition-delay: 0s; }
+.case-studies-grid .case-study-card:nth-child(2).hidden { transition-delay: 0.1s; }
+
+.process-steps .step:nth-child(1).hidden { transition-delay: 0s; }
+.process-steps .step:nth-child(2).hidden { transition-delay: 0.1s; }
+.process-steps .step:nth-child(3).hidden { transition-delay: 0.2s; }
+.process-steps .step:nth-child(4).hidden { transition-delay: 0.3s; }
