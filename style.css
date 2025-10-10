@@ -4,7 +4,7 @@
     --accent-color: #FF5733;      /* Dezenter Akzent (z.B. für Hover/Animationen) */
     --secondary-color: #212529;   /* Fast Schwarz (für Text) */
     --background-light: #f8f9fa;  /* Heller Hintergrund für Sektionen */
-    --background-dark: #343a40;   /* Dunkler Hintergrund für Akzent-Sektionen */
+    --background-dark: #2c3238;   /* ANPASSUNG: Sehr dunkler Hintergrund für Akzent-Sektionen */
     --font-family: 'Inter', sans-serif;
     --max-width: 1200px;
 }
@@ -111,6 +111,62 @@ header nav {
     transition: width 0.3s;
 }
 
+/* HAMBURGER MENÜ (Mobile) */
+.hamburger {
+    display: none; /* Auf Desktop versteckt */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001; 
+    width: 30px;
+    height: 20px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+}
+
+.hamburger span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: var(--secondary-color);
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0px;
+}
+
+.hamburger span:nth-child(2) {
+    top: 8px;
+}
+
+.hamburger span:nth-child(3) {
+    top: 16px;
+}
+
+/* Zustand bei geöffnetem Menü (wird durch JS getoggelt) */
+.hamburger.is-active span:nth-child(1) {
+    top: 8px;
+    transform: rotate(135deg);
+}
+
+.hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+}
+
+.hamburger.is-active span:nth-child(3) {
+    top: 8px;
+    transform: rotate(-135deg);
+}
+
 /* --- Allgemeine Sektionen --- */
 section {
     padding: 100px 0;
@@ -134,6 +190,7 @@ h2 {
     margin-bottom: 60px;
     position: relative;
     display: inline-block;
+    color: var(--secondary-color); /* Standardfarbe für H2 */
 }
 
 h2::after {
@@ -157,13 +214,13 @@ h2::after {
     overflow: hidden;
 }
 
-/* NEU/KORRIGIERT: Keyframes für die Wellen-Animation */
+/* Keyframes für die Wellen-Animation */
 @keyframes wave {
-    0% { background-position: 0% 0%; } /* Hinzugefügte % für korrekte Animation */
+    0% { background-position: 0% 0%; } 
     100% { background-position: 100% 100%; }
 }
 
-/* KORRIGIERT: Subtiler Wellen-Hintergrund */
+/* Subtiler Wellen-Hintergrund */
 .hero-section::before {
     content: '';
     position: absolute;
@@ -171,7 +228,7 @@ h2::after {
     left: 0;
     width: 200%; 
     height: 200%;
-    /* Dezentes, sich wiederholendes Muster, jetzt mit geringerer Opazität für Subtilität */
+    /* Subtile, hellblaue Welle */
     background: radial-gradient(circle at 10% 20%, rgba(0, 123, 255, 0.1) 0%, transparent 50%), 
                 radial-gradient(circle at 80% 90%, rgba(0, 123, 255, 0.1) 0%, transparent 70%);
     
@@ -242,8 +299,45 @@ h2::after {
     color: var(--primary-color);
 }
 
+/* --- NEU: Client Logos Sektion --- */
+.client-logos-section {
+    padding: 40px 0;
+    background-color: white;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.client-logos-section h3 {
+    font-size: 1rem;
+    color: #6c757d;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+.logo-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.logo-grid img {
+    height: 40px; 
+    width: auto;
+    opacity: 0.7;
+    filter: grayscale(100%);
+    transition: opacity 0.3s, filter 0.3s;
+}
+
+.logo-grid img:hover {
+    opacity: 1;
+    filter: none;
+}
+
+
 /* --- B. Problem/Lösung Sektion --- */
-/* ... (keine Änderungen) ... */
 .problem-solution-section {
     padding: 120px 0;
 }
@@ -288,14 +382,15 @@ h2::after {
 /* --- C. Leistungen Sektion (Dunkel) --- */
 .services-section {
     background-color: var(--background-dark);
-    color: white;
+    color: white; /* Allgemeine Textfarbe für die Sektion */
 }
 
+/* Überschrift bleibt weiß */
 .services-section h2 {
-    color: white;
+    color: white; 
 }
 .services-section h2::after {
-    background: var(--primary-color);
+    background: var(--primary-color); 
 }
 
 .service-cards {
@@ -308,44 +403,46 @@ h2::after {
     flex: 1;
     padding: 40px;
     border-radius: 10px;
-    background: #495057;
+    background: #3e444b; /* ANPASSUNG: Dunklerer Kartenhintergrund für Kontrast */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: background 0.3s;
 }
 
 .service-card:hover {
-    background: #5a6268;
+    background: #4e545b; /* ANPASSUNG: Dunklerer Hover-Zustand */
 }
 
 /* Hervorhebung für die primäre Leistung (Webentwicklung) */
 .service-card.dev {
-    background: #5a6268; 
+    background: #4e545b; /* ANPASSUNG: Noch dunkler für die primäre Karte */
     border: 2px solid var(--primary-color);
     box-shadow: 0 0 30px rgba(0, 123, 255, 0.2);
 }
 
 .service-card.dev:hover {
-    background: #6c757d; 
+    background: #5a6268; /* ANPASSUNG: Dunklerer Hover-Zustand */
 }
 
 
 .service-card h3 {
     font-size: 1.8rem;
     margin-bottom: 25px;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Überschrift bleibt primär */
 }
 
 .service-card ul {
     list-style: none;
+    color: #f8f9fa; /* Textfarbe für Listenpunkte in dunkler Sektion */
 }
 
 .service-card li {
     padding: 12px 0;
-    border-bottom: 1px solid #6c757d;
+    border-bottom: 1px solid #5a6268; /* Anpassung: Dunklerer Trennstrich */
 }
 
 .service-card li strong {
     font-weight: 700;
+    color: white; /* Starke Wörter in weiß */
 }
 
 .service-card li:before {
@@ -354,7 +451,7 @@ h2::after {
     font-weight: bold;
     margin-right: 10px;
 }
-/* ... (Rest der Sektionen und Footer bleibt unverändert) ... */
+
 /* --- D. Portfolio Sektion (hell) --- */
 
 .case-studies-grid {
@@ -420,6 +517,41 @@ h2::after {
 
 .case-study-card:hover .case-study-link::after {
     opacity: 1;
+}
+
+/* --- NEU: Testimonials Sektion --- */
+.testimonials-section {
+    background-color: var(--background-light);
+    padding: 100px 0;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.testimonial-grid blockquote {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--primary-color);
+}
+
+.testimonial-grid blockquote p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.testimonial-grid footer {
+    font-size: 0.9rem;
+    color: #6c757d;
 }
 
 /* --- E. Garantie Sektion --- */
@@ -538,7 +670,7 @@ h2::after {
 }
 
 .contact-section h2 {
-    color: white;
+    color: white; /* Überschrift bleibt weiß */
     margin-bottom: 30px;
 }
 
@@ -559,7 +691,7 @@ h2::after {
     padding: 15px;
     border: 1px solid #6c757d;
     background: #495057;
-    color: white;
+    color: white; /* Textfarbe im Inputfeld */
     border-radius: 5px;
     font-family: var(--font-family);
     font-size: 1rem;
@@ -580,6 +712,7 @@ h2::after {
     font-size: 0.9rem;
     opacity: 0.8;
     text-align: center;
+    color: #adb5bd; /* Textfarbe für den kleinen Hinweistext */
 }
 
 .contact-section .small-text strong {
@@ -607,20 +740,83 @@ footer a:hover {
     color: var(--primary-color);
 }
 
+/* ZURÜCK NACH OBEN BUTTON */
+#back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: var(--accent-color);
+    color: white;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0; /* Standardmäßig versteckt */
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 999;
+}
+
+#back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
 /* ------------------------------------------- */
 /* --- WICHTIG: RESPONSIVE ANPASSUNGEN --- */
 /* ------------------------------------------- */
 
-/* Allgemein kleinere Überschriften auf kleinen Bildschirmen */
 @media (max-width: 900px) {
     /* NAVIGATION: Mobile-Anpassung */
     .nav-links {
         display: none;
-        /* Hier müsste normalerweise ein Hamburger-Menü via JS/HTML integriert werden */
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        max-width: 300px;
+        height: 100%;
+        background: white;
+        padding: 80px 20px 20px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(100%);
+        overflow-y: auto; /* Scrollen bei vielen Links ermöglichen */
     }
-    header nav {
-        justify-content: space-between;
+
+    .nav-links.nav-open {
+        display: flex; 
+        transform: translateX(0);
     }
+    
+    .nav-links li {
+        margin: 15px 0;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid var(--background-light);
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 10px 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+    
+    .nav-links .cta-button {
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+    }
+
 
     /* HERO-SEKTION: Verbesserte Ausrichtung und Skalierung */
     .hero-section {
@@ -658,15 +854,24 @@ footer a:hover {
     section { padding: 80px 0; }
 
     /* Grid-Layouts auf eine Spalte */
-    .stat-grid, .case-studies-grid, .guarantee-points {
+    .stat-grid, .case-studies-grid, .guarantee-points, .testimonial-grid {
         grid-template-columns: 1fr;
         gap: 30px;
     }
     
-    /* KORRIGIERT: Service-Karten müssen auf Mobile untereinander gestapelt werden */
+    /* Service-Karten stapeln */
     .service-cards {
         flex-direction: column; 
         gap: 30px;
+    }
+
+    /* Client Logos anpassen */
+    .logo-grid {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .logo-grid img {
+        height: 30px;
     }
 
 
@@ -709,7 +914,6 @@ footer a:hover {
 
 
 /* --- CSS for Animations (JS-gesteuert) --- */
-/* ... (Animations-Klassen bleiben unverändert) ... */
 .hidden {
     opacity: 0;
     transform: translateY(30px);
@@ -740,3 +944,9 @@ footer a:hover {
 .process-steps .step:nth-child(2).hidden { transition-delay: 0.1s; }
 .process-steps .step:nth-child(3).hidden { transition-delay: 0.2s; }
 .process-steps .step:nth-child(4).hidden { transition-delay: 0.3s; }
+
+.testimonial-grid blockquote:nth-child(1).hidden { transition-delay: 0s; }
+.testimonial-grid blockquote:nth-child(2).hidden { transition-delay: 0.1s; }
+
+/* Client Logos haben keine individuelle Verzögerung, da es ein Fließband ist */
+.client-logos-section .container.hidden { transition-delay: 0.5s; }

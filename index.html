@@ -14,11 +14,17 @@
     <header id="main-header">
         <nav class="container">
             <a href="#hero" class="logo">Ihr<span>.</span>Name</a>
+            <button class="hamburger" aria-label="Menü öffnen" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#leistungen">Leistungen</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Stimmen</a></li>
                 <li><a href="#prozess">Prozess</a></li>
-                <li><a class="cta-button" href="#kontakt">Jetzt Effizienz-Check!</a></li>
+                <li><a class="cta-button" href="#kontakt">Projekt besprechen</a></li>
             </ul>
         </nav>
     </header>
@@ -28,11 +34,24 @@
             <div class="container">
                 <h1>Ich bin Ihr Experte für <strong>High-Performance Webentwicklung</strong>, die Ihre Geschäftsprozesse automatisch skaliert.</h1>
                 <p class="subline">Ihr digitaler Fortschritt: Schluss mit frustrierenden Ladezeiten und zeitraubender manueller Arbeit. Starten Sie mit einer Website, die gewinnt und automatisiert.</p>
-                <a href="#kontakt" class="primary-cta">Kostenlose Effizienz-Analyse starten &rarr;</a>
+                <a href="#kontakt" class="primary-cta">Kostenloses Erstgespräch &rarr;</a>
                 
                 <div class="performance-proof hidden">
-                    <span>⚡ Ladezeit: <span id="load-time">0.1s</span></span>
+                    <span>⚡ Ladezeit: <span id="load-time">0.8s</span></span>
                     <span>💯 Code-Standard: <strong>A+</strong></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="clients" class="client-logos-section">
+            <div class="container hidden">
+                <h3>Von Unternehmen, die Effizienz verstehen, beauftragt:</h3>
+                <div class="logo-grid">
+                    <img src="logo-placeholder-1.svg" alt="Kunden-Logo 1">
+                    <img src="logo-placeholder-2.svg" alt="Kunden-Logo 2">
+                    <img src="logo-placeholder-3.svg" alt="Kunden-Logo 3">
+                    <img src="logo-placeholder-4.svg" alt="Kunden-Logo 4">
+                    <img src="logo-placeholder-5.svg" alt="Kunden-Logo 5">
                 </div>
             </div>
         </section>
@@ -105,6 +124,26 @@
             </div>
         </section>
         
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+                <h2>Kundenstimmen: Was Auftraggeber über mich sagen</h2>
+                <div class="testimonial-grid">
+                    <blockquote class="hidden">
+                        <p>"Die neue Website ist nicht nur unglaublich schnell, sie hat unsere manuelle Dateneingabe fast komplett eliminiert. Eine echte Investition, die sich sofort ausgezahlt hat."</p>
+                        <footer>
+                            <strong>Max Mustermann</strong>, CEO bei Musterfirma GmbH
+                        </footer>
+                    </blockquote>
+                    <blockquote class="hidden">
+                        <p>"Endlich ein Freelancer, der Technik und Geschäftszahlen versteht. Die Anbindung an unser ERP-System war nahtlos und fehlerfrei."</p>
+                        <footer>
+                            <strong>Petra Schmidt</strong>, Head of Operations
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
         <section id="garantie" class="guarantee-section">
             <div class="container">
                 <h2>Ihre Sicherheit: Qualität und Klarheit</h2>
@@ -159,14 +198,16 @@
                 <form id="contact-form" action="submit.php" method="POST">
                     <input type="text" name="name" placeholder="Ihr Name" required>
                     <input type="email" name="email" placeholder="Ihre Geschäfts-E-Mail" required>
-                    <textarea name="message" placeholder="Kurze Beschreibung Ihres Projekts und des größten Ineffizienz-Punktes." required></textarea>
-                    <button type="submit" class="primary-cta">Effizienz-Check buchen</button>
+                    <textarea name="message" placeholder="Kurze Beschreibung Ihres Projekts und des größten Ineffizienz-Punktes." rows="5" required></textarea>
+                    <button type="submit" class="primary-cta">Kostenloses Erstgespräch buchen</button>
                     <p class="small-text">Kein Standardformular. Ihre Anfrage löst bei mir einen <strong>automatisierten Qualifizierungs-Workflow</strong> aus. Ein Live-Beweis meiner Arbeit.</p>
                 </form>
             </div>
         </section>
 
     </main>
+    
+    <a href="#hero" id="back-to-top" aria-label="Zurück nach oben">↑</a>
 
     <footer>
         <div class="container">

@@ -1,75 +1,92 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. Animation für Ladezeit-Zahl ---
+    const loadTimeElement = document.getElementById('load-time');
+    const targetLoadTime = 0.1; // Zielwert
+    let currentValue = 0.8; // Startwert (simuliert)
+    const duration = 1500; // Dauer der Animation in ms
+    let startTime = null;
 
-    // 1. PERFORMANCE-CHECK (Simulierte Ladezeit, demonstriert aber den Fokus)
-    if (window.performance && performance.timing) {
-        const loadTimeElement = document.getElementById('load-time');
-        const loadTimeMs = performance.timing.loadEventEnd - performance.timing.navigationStart;
-        if (loadTimeElement && loadTimeMs > 0) {
-            loadTimeElement.textContent = (loadTimeMs / 1000).toFixed(2) + 's';
-        } else if (loadTimeElement) {
-            loadTimeElement.textContent = '0.05s'; // Annäherung für Demo-Zwecke
+    function animateLoadTime(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1); // Fortschritt von 0 bis 1
+
+        if (progress < 1) {
+            // Rechnet den Wert von 0.8 zu 0.1
+            currentValue = 0.8 - (0.7 * progress);
+            loadTimeElement.textContent = currentValue.toFixed(1) + 's';
+            requestAnimationFrame(animateLoadTime);
+        } else {
+            loadTimeElement.textContent = targetLoadTime.toFixed(1) + 's';
         }
     }
 
-    // 2. KONTAKTFORMULAR-FEEDBACK (Demonstriert Automatisierungs-Logik)
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+    // Startet die Animation, wenn die Performance-Proof Sektion sichtbar wird
+    const performanceProof = document.querySelector('.performance-proof');
+    const proofObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                requestAnimationFrame(animateLoadTime);
+                proofObserver.unobserve(performanceProof);
+            }
+        });
+    }, { threshold: 0.5 }); 
+    
+    if (performanceProof) {
+        proofObserver.observe(performanceProof);
+    }
 
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
-            
-            submitButton.textContent = 'Workflow gestartet! 🤖';
-            submitButton.style.backgroundColor = '#28a745';
-            submitButton.disabled = true;
 
-            // Simulierte Verzögerung für die Demo:
-            setTimeout(() => {
-                alert("Vielen Dank für Ihre Anfrage! Unser automatisierter Qualifizierungs-Workflow hat soeben gestartet. Ich melde mich in Kürze bei Ihnen.");
-                contactForm.reset();
-                submitButton.textContent = originalButtonText;
-                submitButton.style.backgroundColor = 'var(--primary-color)';
-                submitButton.disabled = false;
-            }, 2000);
+    // --- 2. Hamburger Menü Logik ---
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-open');
+            hamburger.classList.toggle('is-active');
+            // document.body.classList.toggle('no-scroll'); // Optional: Verhindert Scrollen im Body
+        });
+
+        // Schließt das Menü beim Klicken auf einen Link (für sanftes Scrollen)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('nav-open')) {
+                    navLinks.classList.remove('nav-open');
+                    hamburger.classList.remove('is-active');
+                    // document.body.classList.remove('no-scroll');
+                }
+            });
         });
     }
 
-    // 3. SMOOTH SCROLLING (Für verbesserte User Experience)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            if (this.getAttribute('href').length > 1) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+    // --- 3. Zurück nach Oben Button Logik ---
+    const backToTopButton = document.getElementById('back-to-top');
 
-    // 4. SCROLL-REVEAL ANIMATIONEN (Der visuelle "Wow"-Faktor)
-    const animateOnScroll = (entries, observer) => {
+    const scrollHandler = () => {
+        if (backToTopButton) {
+            if (window.scrollY > 400) { // Zeigt Button nach 400px Scroll an
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        }
+    };
+
+    window.addEventListener('scroll', scrollHandler);
+
+    
+    // --- 4. Intersection Observer für Scroll-Animation ---
+    const hiddenElements = document.querySelectorAll('.hidden');
+
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
         });
-    };
+    }, { threshold: 0.1 }); // Trigger bei 10% Sichtbarkeit
 
-    const observerOptions = {
-        root: null,
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver(animateOnScroll, observerOptions);
-
-    const animatedElements = document.querySelectorAll(
-        '.performance-proof, .stat-card, .service-card, .case-study-card, .guarantee-points > div, .step, .about-me'
-    );
-
-    animatedElements.forEach(element => {
-        element.classList.add('hidden');
-        observer.observe(element);
-    });
+    hiddenElements.forEach(el => observer.observe(el));
 });
