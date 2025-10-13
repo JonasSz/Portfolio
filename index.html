@@ -3,97 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ihr Name | High-Performance Webentwicklung & Automatisierung</title>
-    <meta name="description" content="Ihr Experte für High-Performance Webentwicklung und Prozessautomatisierung. Ich baue Websites, die skalieren und Geschäftsprozesse optimieren.">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <title>Ihr Name – Webentwickler & Automation Experte</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <a href="#hero" id="back-to-top" aria-label="Zurück nach oben">↑</a>
+
     <header id="main-header">
-        <nav class="container">
-            <a href="#hero" class="logo">Ihr<span>.</span>Name</a>
-            <button class="hamburger" aria-label="Menü öffnen" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#leistungen">Leistungen</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#testimonials">Stimmen</a></li>
-                <li><a href="#prozess">Prozess</a></li>
-                <li><a class="cta-button" href="#kontakt">Projekt besprechen</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <a href="#hero" class="logo">Ihr <span>Name</span></a>
+                <ul class="nav-links">
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#process">Prozess</a></li>
+                    <li><a href="#about">Über mich</a></li>
+                    <li><a href="#contact" class="cta-button">Kontakt</a></li>
+                </ul>
+                <button class="hamburger" aria-label="Menü öffnen/schließen">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
     </header>
 
     <main>
         <section id="hero" class="hero-section">
             <div class="container">
-                <h1>Ich bin Ihr Experte für <strong>High-Performance Webentwicklung</strong>, die Ihre Geschäftsprozesse automatisch skaliert.</h1>
-                <p class="subline">Ihr digitaler Fortschritt: Schluss mit frustrierenden Ladezeiten und zeitraubender manueller Arbeit. Starten Sie mit einer Website, die gewinnt und automatisiert.</p>
-                <a href="#kontakt" class="primary-cta">Kostenloses Erstgespräch &rarr;</a>
+                <h1 class="hidden">Ich baue nicht nur Websites, ich baue digitale <strong>Vorteile</strong> 🚀.</h1>
+                <p class="subline hidden">Ihr Experte für <strong>schnelle Websites</strong> und <strong>automatisierte Prozesse</strong>. 💻</p>
+                <a href="#contact" class="primary-cta hidden">Jetzt Ihr Projekt besprechen 💡</a>
                 
                 <div class="performance-proof hidden">
-                    <span>⚡ Ladezeit: <span id="load-time">0.8s</span></span>
-                    <span>💯 Code-Standard: <strong>A+</strong></span>
-                </div>
-            </div>
-        </section>
-
-        <section id="clients" class="client-logos-section">
-            <div class="container hidden">
-                <h3>Von Unternehmen, die Effizienz verstehen, beauftragt:</h3>
-                <div class="logo-grid">
-                    <img src="logo-placeholder-1.svg" alt="Kunden-Logo 1">
-                    <img src="logo-placeholder-2.svg" alt="Kunden-Logo 2">
-                    <img src="logo-placeholder-3.svg" alt="Kunden-Logo 3">
-                    <img src="logo-placeholder-4.svg" alt="Kunden-Logo 4">
-                    <img src="logo-placeholder-5.svg" alt="Kunden-Logo 5">
-                </div>
-            </div>
-        </section>
-
-        <section id="problem" class="problem-solution-section">
-            <div class="container">
-                <h2>Der Preis einer <strong>veralteten</strong> Website: Warum Ineffizienz Sie Vermögen kostet.</h2>
-                <div class="stat-grid">
-                    <div class="stat-card hidden">
-                        <h3>Verlorenes Vertrauen & Performance</h3>
-                        <p><strong>88%</strong> der Nutzer kehren nach schlechter UX oder langsamer Ladegeschwindigkeit nicht zurück. Ihre Website muss <strong>modern und blitzschnell</strong> sein.</p>
-                    </div>
-                    <div class="stat-card hidden">
-                        <h3>Veralteter Code & Kostenfalle</h3>
-                        <p>Ein altes Fundament macht jede Änderung teuer, langsam und risikoreich. Investieren Sie in <strong>skalierbare Technologie</strong> statt in Notfall-Reparaturen.</p>
-                    </div>
-                    <div class="stat-card hidden">
-                        <h3>Manuelle Belastung</h3>
-                        <p>Täglich Stunden für Datenpflege, E-Mail-Sortierung oder manuelle Rechnungsstellung? Das ist Ihr größter Kostenfaktor – <strong>Automatisierung</strong> ist die Lösung.</p>
-                    </div>
+                    <span>Ladezeit: <strong id="load-time">0.8s</strong></span>
+                    <span>Erfahrung: <strong>Einige Jahre</strong></span>
                 </div>
             </div>
         </section>
         
-        <section id="leistungen" class="services-section">
+        <section id="problem" class="problem-solution-section">
             <div class="container">
-                <h2>Meine Expertise: Der Doppelte Fortschritt</h2>
+                <h2>Ich löse Ihre größten digitalen Probleme 🤔</h2>
+                <div class="stat-grid">
+                    <div class="stat-card hidden">
+                        <h3>Problem: Langsame Ladezeiten 🐢</h3>
+                        <p>Ihre Seite verliert Besucher und Ranking-Positionen? Ich sorge dafür, dass Ihre Website <strong>schnell & modern</strong> wird.</p>
+                    </div>
+                    <div class="stat-card hidden">
+                        <h3>Problem: Manuelle Arbeitsschritte 📉</h3>
+                        <p>Zu viel Zeit geht für langweilige, sich wiederholende Aufgaben verloren? Ich <strong>automatisiere</strong> Ihre Abläufe mit smarten Tools.</p>
+                    </div>
+                    <div class="stat-card hidden">
+                        <h3>Problem: Nicht zukunftssichere Systeme 🚧</h3>
+                        <p>Ihre aktuelle Lösung stößt an ihre Grenzen? Ich baue eine moderne, <strong>leistungsstarke</strong> und <strong>flexible</strong> Basis für Ihr Wachstum.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="expertise" class="services-section">
+            <div class="container">
+                <h2 class="hidden">Meine Expertise 🛠️</h2>
                 <div class="service-cards">
                     <div class="service-card dev hidden">
-                        <h3>1. Webentwicklung & Architektur</h3>
+                        <h3>Web-Lösungen (Website & Apps)</h3>
                         <ul>
-                            <li><strong>Modernes Fundament:</strong> Aufbau zukunftssicherer Websites (<strong>Headless-Ready</strong>).</li>
-                            <li><strong>Performance-Garantie:</strong> Fokus auf blitzschnelle Ladezeiten (Core Web Vitals) für bessere Rankings.</li>
-                            <li><strong>Frontend Expertise:</strong> Intuitive Bedienbarkeit und perfektes Design auf jedem Gerät.</li>
+                            <li><strong>Individuelle</strong> Websites und Web-Apps (z.B. mit React, Next.js)</li>
+                            <li>Entwicklung des gesamten Systems von vorne bis hinten (Full-Stack)</li>
+                            <li><strong>Extrem schnelle</strong> Ladezeiten und Performance-Optimierung</li>
+                            <li>Integration von Content Management Systemen (CMS)</li>
                         </ul>
                     </div>
-                    <div class="service-card auto hidden">
-                        <h3>2. Prozess-Automatisierung & Integration</h3>
+                    <div class="service-card hidden">
+                        <h3>Geschäfts-Automatisierung 🤖</h3>
                         <ul>
-                            <li><strong>Systeme verbinden:</strong> Anbindung Ihrer Tools wie <strong>CRM, ERP</strong> oder <strong>E-Mail-Marketing</strong> über Schnittstellen (APIs).</li>
-                            <li><strong>Lead-Workflows:</strong> Automatische Qualifizierung und Bearbeitung von Anfragen.</li>
-                            <li><strong>Daten-Synchronisation:</strong> Schluss mit manueller Pflege zwischen Systemen.</li>
+                            <li>Automatisierung von täglichen Abläufen (z.B. Berichte oder Datentransfer)</li>
+                            <li>Entwicklung von internen Tools (Dashboards, Intranets)</li>
+                            <li>Verbindung unterschiedlicher Software-Systeme (API-Anbindung)</li>
+                            <li>Einrichtung der Hosting-Umgebung (Cloud-Deployment)</li>
                         </ul>
                     </div>
                 </div>
@@ -102,116 +93,122 @@
 
         <section id="portfolio" class="portfolio-section">
             <div class="container">
-                <h2>Ergebnisse, die für sich sprechen: Meine Case Studies</h2>
-                <div class="case-studies-grid">
-                    <article class="case-study-card hidden">
+                <h2>Ergebnisse, die für sich sprechen: Meine Case Studies ✨</h2>
+                
+                <div class="case-studies-grid portfolio-carousel-wrapper">
+                    <article class="case-study-card">
                         <img src="projekt1-bild.jpg" alt="Projekt A: E-Commerce Automatisierung">
                         <div class="case-study-content">
                             <h3>E-Commerce Startup: <strong>75%</strong> weniger manuelle Bestellfehler.</h3>
-                            <p>Das Problem: Manuelle Lagerbestands-Updates und fehlerhafte Rechnungen. Die Lösung: Neue Website mit automatisierter Schnittstelle zum Lagerverwaltungssystem.</p>
+                            <p>Das Problem: Manuelle Lagerbestands-Updates und fehlerhafte Rechnungen. <strong>Die Lösung:</strong> Neue Website mit automatisierter Verbindung zum Lagerverwaltungssystem.</p>
                             <a href="#" class="case-study-link">Details &rarr;</a>
                         </div>
                     </article>
-                    <article class="case-study-card hidden">
+                    <article class="case-study-card">
                         <img src="projekt2-bild.jpg" alt="Projekt B: B2B Lead Nurturing">
                         <div class="case-study-content">
                             <h3>B2B Dienstleister: <strong>400%</strong> Steigerung der qualifizierten Anfragen.</h3>
-                            <p>Das Problem: Unqualifizierte Leads blockierten den Vertrieb. Die Lösung: Intelligentes Formular-System mit automatischem Lead-Scoring und CRM-Integration.</p>
+                            <p>Das Problem: Unqualifizierte Anfragen blockierten den Vertrieb. <strong>Die Lösung:</strong> Intelligentes Formular-System, das automatisch Leads bewertet und ins Vertriebs-Tool integriert.</p>
                             <a href="#" class="case-study-link">Details &rarr;</a>
                         </div>
                     </article>
+                    
+                    <article class="case-study-card">
+                        <img src="projekt3-bild.jpg" alt="Projekt C: Intranet & API">
+                        <div class="case-study-content">
+                            <h3>Digitalisierung KMU: <strong>30%</strong> schnellere Mitarbeiter-Workflows.</h3>
+                            <p>Das Problem: Verteilte Dokumente und langsame interne Kommunikation. <strong>Die Lösung:</strong> Ein massgeschneidertes Intranet, das alle Daten zentralisiert und den Zugang vereinfacht.</p>
+                            <a href="#" class="case-study-link">Details &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="case-study-card">
+                        <img src="projekt4-bild.jpg" alt="Projekt D: Automatisierte Berichterstattung">
+                        <div class="case-study-content">
+                            <h3>Finanzdienstleister: Tägliche Berichte in <strong>unter 1 Minute</strong>.</h3>
+                            <p>Das Problem: Manuelle Erstellung von Finanz-Dashboards benötigte Stunden. <strong>Die Lösung:</strong> Ein Tool, das automatisch Daten abruft und sie übersichtlich visualisiert.</p>
+                            <a href="#" class="case-study-link">Details &rarr;</a>
+                        </div>
+                    </article>
+
                 </div>
-            </div>
-        </section>
-        
-        <section id="testimonials" class="testimonials-section">
-            <div class="container">
-                <h2>Kundenstimmen: Was Auftraggeber über mich sagen</h2>
-                <div class="testimonial-grid">
-                    <blockquote class="hidden">
-                        <p>"Die neue Website ist nicht nur unglaublich schnell, sie hat unsere manuelle Dateneingabe fast komplett eliminiert. Eine echte Investition, die sich sofort ausgezahlt hat."</p>
-                        <footer>
-                            <strong>Max Mustermann</strong>, CEO bei Musterfirma GmbH
-                        </footer>
-                    </blockquote>
-                    <blockquote class="hidden">
-                        <p>"Endlich ein Freelancer, der Technik und Geschäftszahlen versteht. Die Anbindung an unser ERP-System war nahtlos und fehlerfrei."</p>
-                        <footer>
-                            <strong>Petra Schmidt</strong>, Head of Operations
-                        </footer>
-                    </blockquote>
-                </div>
+                
+                <div class="carousel-dots-container">
+                    </div>
+
             </div>
         </section>
 
-        <section id="garantie" class="guarantee-section">
+        <section id="guarantee" class="guarantee-section">
             <div class="container">
-                <h2>Ihre Sicherheit: Qualität und Klarheit</h2>
+                <h2>Meine 3-Wege-Garantie: Vertrauen und Qualität ✅</h2>
                 <div class="guarantee-points">
                     <div class="hidden">
-                        <h3>🚀 Performance-Garantie</h3>
-                        <p>Ihre Website wird <strong>mindestens 90/100 Punkte</strong> in den wichtigen <strong>Geschwindigkeits-Tests</strong> (Core Web Vitals) erreichen. Andernfalls liefere ich nach.</p>
+                        <h3>1. Performance-Versprechen ⚡</h3>
+                        <p>Ich garantiere Ihnen extrem schnelle Ladezeiten, bevor die Seite live geht.</p>
                     </div>
                     <div class="hidden">
-                        <h3>💰 Fixpreis & Scope-Klarheit</h3>
-                        <p>Keine versteckten Kosten. Nach der Strategiephase erhalten Sie einen verbindlichen Fixpreis und einen klar definierten Leistungsumfang (Scope).</p>
+                        <h3>2. Saubere Code-Basis 🧹</h3>
+                        <p>Sie erhalten klaren, wartungsfreundlichen Code, den jeder andere Entwickler leicht verstehen kann.</p>
                     </div>
                     <div class="hidden">
-                        <h3>🛠️ 60 Tage Bugfix-Support</h3>
-                        <p>Nach Go-Live biete ich 60 Tage kostenlosen Support für alle von mir verursachten Fehler und Anpassungen an den Workflows.</p>
+                        <h3>3. Nachbetreuung 🤝</h3>
+                        <p>Ich stehe auch nach dem Start für Anpassungen und Optimierungen bereit, damit alles reibungslos läuft.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="prozess" class="process-section">
+        <section id="process" class="process-section">
             <div class="container">
-                <h2>Transparenz und Struktur: So arbeite ich</h2>
+                <h2>Mein transparenter und effizienter Prozess ⚙️</h2>
                 <div class="process-steps">
                     <div class="step hidden">
-                        <h4>1. Strategie & Audit</h4>
-                        <p><strong>Zielorientierte Analyse</strong> Ihrer Ineffizienzen, technisches Konzept und verbindliche Scope-Definition.</p>
+                        <h4>1. Analyse & Planung</h4>
+                        <p>Wir verstehen Ihr Ziel und definieren die beste technische Strategie.</p>
                     </div>
                     <div class="step hidden">
-                        <h4>2. Entwicklung & Integration</h4>
-                        <p>Sauberer Code, UX-Design und parallele Anbindung Ihrer Softwares (APIs) für den Workflow-Start.</p>
+                        <h4>2. Gestaltung & Aufbau</h4>
+                        <p>Erstellung von Prototypen und Design-Vorschlägen, um die Vision festzulegen.</p>
                     </div>
                     <div class="step hidden">
-                        <h4>3. Testing & Go-Live</h4>
-                        <p>Intensives Performance-Testing, Rollout des Systems und Übergabe der vollständigen Dokumentation.</p>
+                        <h4>3. Entwicklung & Umsetzung</h4>
+                        <p>Agile Programmierung der Lösung und Integration aller Automatisierungen.</p>
                     </div>
                     <div class="step hidden">
-                        <h4>4. Support & Skalierung</h4>
-                        <p>60 Tage Bugfix-Support und Strategie-Besprechung für die nächsten Wachstumsschritte (Automatisierung 2.0).</p>
+                        <h4>4. Testing & Go-Live</h4>
+                        <p>Gründliche Tests, Performance-Check und Veröffentlichung der fertigen Lösung.</p>
                     </div>
                 </div>
-                <div class="about-me hidden">
-                    <img src="ihr-foto.jpg" alt="Ihr professionelles Profilfoto">
-                    <p><strong>Über mich:</strong> Ich bin Ihr Name, Full-Stack Freelancer mit einem klaren Fokus auf <strong>technische Exzellenz</strong> und <strong>messbaren ROI</strong>. Ich baue moderne, blitzschnelle Web-Architekturen und verknüpfe sie mit automatisierten Workflows – damit Sie sich auf Ihr Kerngeschäft konzentrieren können.</p>
+                
+                <div id="about" class="about-me hidden">
+                    <img src="profilbild.jpg" alt="Profilbild von Ihr Name">
+                    <div>
+                        <h3>Über mich: Ihr Partner für digitale Exzellenz</h3>
+                        <p>Ich bin <strong>Ihr Name</strong>, Ihr Entwickler, spezialisiert auf <strong>schnelle und automatisierte Web-Lösungen</strong>. Mein Ziel ist es, nicht nur ansprechende Oberflächen zu bauen, sondern <strong>echte Mehrwerte</strong> zu schaffen, die Ihre Effizienz und Ihren Umsatz steigern. Ich arbeite transparent, fokussiert und immer mit Blick auf die Zukunftsfähigkeit Ihrer digitalen Produkte.</p>
+                    </div>
                 </div>
+
             </div>
         </section>
 
-        <section id="kontakt" class="contact-section">
+        <section id="contact" class="contact-section">
             <div class="container">
-                <h2>Bereit, Ihre Prozesse zu digitalisieren?</h2>
-                <form id="contact-form" action="submit.php" method="POST">
+                <h2>Starten wir Ihr Projekt 💬</h2>
+                <form id="contact-form" action="#" method="POST">
                     <input type="text" name="name" placeholder="Ihr Name" required>
-                    <input type="email" name="email" placeholder="Ihre Geschäfts-E-Mail" required>
-                    <textarea name="message" placeholder="Kurze Beschreibung Ihres Projekts und des größten Ineffizienz-Punktes." rows="5" required></textarea>
-                    <button type="submit" class="primary-cta">Kostenloses Erstgespräch buchen</button>
-                    <p class="small-text">Kein Standardformular. Ihre Anfrage löst bei mir einen <strong>automatisierten Qualifizierungs-Workflow</strong> aus. Ein Live-Beweis meiner Arbeit.</p>
+                    <input type="email" name="email" placeholder="Ihre E-Mail-Adresse" required>
+                    <textarea name="message" rows="5" placeholder="Beschreiben Sie kurz Ihr Projekt und Ihre größten Herausforderungen." required></textarea>
+                    <button type="submit" class="primary-cta">Unverbindlich anfragen</button>
                 </form>
+                <p class="small-text">Ich antworte in der Regel innerhalb von 24 Stunden. <strong>Ihre Daten werden vertraulich behandelt.</strong></p>
             </div>
         </section>
 
     </main>
-    
-    <a href="#hero" id="back-to-top" aria-label="Zurück nach oben">↑</a>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Ihr Name. <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+            <p>&copy; 2025 Ihr Name. Alle Rechte vorbehalten. | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
         </div>
     </footer>
 

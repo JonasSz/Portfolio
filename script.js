@@ -1,18 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
     // --- 1. Animation für Ladezeit-Zahl ---
     const loadTimeElement = document.getElementById('load-time');
-    const targetLoadTime = 0.1; // Zielwert
-    let currentValue = 0.8; // Startwert (simuliert)
-    const duration = 1500; // Dauer der Animation in ms
+    const targetLoadTime = 0.1; 
+    let currentValue = 0.8; 
+    const duration = 1500; 
     let startTime = null;
 
     function animateLoadTime(timestamp) {
         if (!startTime) startTime = timestamp;
         const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1); // Fortschritt von 0 bis 1
+        const progress = Math.min(elapsed / duration, 1); 
 
         if (progress < 1) {
-            // Rechnet den Wert von 0.8 zu 0.1
             currentValue = 0.8 - (0.7 * progress);
             loadTimeElement.textContent = currentValue.toFixed(1) + 's';
             requestAnimationFrame(animateLoadTime);
@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Startet die Animation, wenn die Performance-Proof Sektion sichtbar wird
     const performanceProof = document.querySelector('.performance-proof');
     const proofObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -45,16 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('nav-open');
             hamburger.classList.toggle('is-active');
-            // document.body.classList.toggle('no-scroll'); // Optional: Verhindert Scrollen im Body
         });
 
-        // Schließt das Menü beim Klicken auf einen Link (für sanftes Scrollen)
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 if (navLinks.classList.contains('nav-open')) {
                     navLinks.classList.remove('nav-open');
                     hamburger.classList.remove('is-active');
-                    // document.body.classList.remove('no-scroll');
                 }
             });
         });
@@ -65,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scrollHandler = () => {
         if (backToTopButton) {
-            if (window.scrollY > 400) { // Zeigt Button nach 400px Scroll an
+            if (window.scrollY > 400) { 
                 backToTopButton.classList.add('show');
             } else {
                 backToTopButton.classList.remove('show');
@@ -86,7 +82,214 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 }); // Trigger bei 10% Sichtbarkeit
+    }, { threshold: 0.1 }); 
 
     hiddenElements.forEach(el => observer.observe(el));
+    
+    
+    // --- 5. Endlos Karten-Diashow Swipe-Logik (Mobile) ---
+    
+    const carouselWrapper = document.querySelector('.case-studies-grid'); 
+    const cards = Array.from(document.querySelectorAll('.case-study-card'));
+    const dotsContainer = document.querySelector('.carousel-dots-container');
+    
+    // Hauptprüfung: Wenn kein Karussell oder keine Karten, beenden
+    if (!carouselWrapper || cards.length === 0) return;
+        
+    let currentIndex = 0; 
+    let dots = [];
+    const swipeThreshold = 50; 
+    
+    let isSwiping = false;
+    let currentTopCard = null; 
+    let deltaX = 0;
+
+    const isMobileView = () => window.innerWidth <= 900;
+    
+    // --- 5.1 Dots erstellen ---
+    cards.forEach((card, i) => {
+        const dot = document.createElement('div');
+        dot.classList.add('carousel-dot');
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+    });
+
+    // --- 5.2 RESIZE OBSERVER für die automatische Höhenanpassung ---
+    // Dies ist der FIX für das Verschwinden.
+    let isMeasuring = false;
+
+    const resizeObserver = new ResizeObserver(entries => {
+        if (isMeasuring) {
+            const newHeight = entries[0].contentRect.height;
+            carouselWrapper.style.height = `${newHeight}px`;
+            
+            // Position nach der Messung wiederherstellen
+            cards[currentIndex].style.position = 'absolute';
+            isMeasuring = false;
+            
+            // Entferne den Observer nach der Messung, er wird bei jedem Wechsel neu gesetzt
+            resizeObserver.unobserve(cards[currentIndex]);
+        }
+    });
+    
+    // --- 5.3 Funktion zur Aktualisierung des Karten-Zustands ---
+    function updateSlideshowVisuals() {
+        if (!isMobileView()) {
+            // Desktop-Modus: Reset aller Karussell-spezifischen Stile
+            carouselWrapper.style.height = ''; 
+            cards.forEach(card => {
+                card.style.position = ''; // Zurück zu CSS-Grid-Flow
+                card.classList.remove('top-card', 'next-card', 'swiping-out');
+                card.style.transform = '';
+                card.style.opacity = 1; 
+                card.style.zIndex = 1;
+                card.style.pointerEvents = 'auto';
+            });
+            return; 
+        } 
+
+        // Mobile-Modus: Karussell-Logik
+        const nextIndex = (currentIndex + 1) % cards.length;
+        const cardToMeasure = cards[currentIndex];
+
+        // 1. ZUERST: Position der aktuellen Karte auf "static" setzen, um die natürliche Höhe zu messen
+        isMeasuring = true;
+        cardToMeasure.style.position = 'static'; 
+        resizeObserver.observe(cardToMeasure); // Beginnt mit der Überwachung
+
+        // 2. Karten-Klassen setzen und Positionen anpassen
+        cards.forEach((card, i) => {
+            card.classList.remove('top-card', 'next-card', 'swiping-out');
+            card.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+            card.style.pointerEvents = 'none';
+            
+            // Stelle sicher, dass unsichtbare Karten absolut positioniert bleiben
+            if (i !== currentIndex) {
+                card.style.position = 'absolute'; 
+            }
+            card.style.visibility = 'visible';
+
+
+            if (i === currentIndex) {
+                // Die aktuell sichtbare Karte (Top Card)
+                card.classList.add('top-card');
+                card.style.transform = 'translateX(-50%) scale(1.0)';
+                card.style.opacity = 1;
+                card.style.zIndex = 10;
+                card.style.pointerEvents = 'auto'; 
+                
+            } else if (i === nextIndex) { 
+                // Die nächste Karte
+                card.classList.add('next-card');
+                card.style.transform = 'translateX(-50%) scale(0.98)'; 
+                card.style.opacity = 1; 
+                card.style.zIndex = 9;
+                
+            } else {
+                // Alle anderen Karten sind unsichtbar
+                card.style.opacity = 0;
+                card.style.zIndex = 1; 
+                card.style.transform = 'translateX(-50%) scale(1.0)';
+            }
+        });
+        
+        // Punkte aktualisieren
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+        
+        currentTopCard = cards[currentIndex];
+    }
+    
+    // --- 5.4 Swipe-Handler Funktionen ---
+    
+    const handleMove = (e) => {
+        if (!isSwiping || !currentTopCard) return;
+        
+        const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        deltaX = currentX - currentTopCard.startX;
+        
+        if (deltaX < 0) { // Nur nach links wischen
+            const rotation = Math.max(-15, deltaX / 10);
+            const scaleFactor = Math.max(0.8, 1 - Math.abs(deltaX) / 500);
+            
+            currentTopCard.style.transform = `translateX(-50%) translateX(${deltaX}px) rotate(${rotation}deg) scale(${scaleFactor})`;
+            if (e.type.includes('touch')) e.preventDefault(); 
+        }
+    };
+
+    const handleEnd = () => {
+        if (!isSwiping || !currentTopCard) return;
+        isSwiping = false;
+        
+        currentTopCard.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out'; 
+
+        if (deltaX < -swipeThreshold) {
+            // KARTE AUSSWIPEN
+            currentTopCard.classList.add('swiping-out');
+            
+            currentIndex = (currentIndex + 1) % cards.length; 
+
+            // Nach der Animation den Zustand aktualisieren
+            setTimeout(() => {
+                updateSlideshowVisuals();
+            }, 550); 
+            
+        } else {
+            // KARTE ZURÜCKSETZEN
+            currentTopCard.style.transform = 'translateX(-50%) scale(1.0)';
+        }
+        
+        // Globale Listener entfernen
+        document.removeEventListener('mousemove', handleMove);
+        document.removeEventListener('mouseup', handleEnd);
+        
+        deltaX = 0;
+    };
+    
+    const handleStart = (e) => {
+        if (!currentTopCard || e.target.closest('.case-study-card') !== currentTopCard || !isMobileView()) return;
+
+        currentTopCard.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        isSwiping = true;
+        currentTopCard.style.transition = 'none'; 
+        
+        if (e.type.includes('mouse')) {
+            document.addEventListener('mousemove', handleMove);
+            document.addEventListener('mouseup', handleEnd);
+            e.preventDefault(); 
+        }
+        
+        currentTopCard.onselectstart = () => false; 
+    };
+    
+    // --- 5.5 Finales Initialisierungs-Handling ---
+    
+    cards.forEach(card => {
+        // Touch Listener
+        card.addEventListener('touchstart', handleStart);
+        card.addEventListener('touchmove', handleMove);
+        card.addEventListener('touchend', handleEnd);
+        
+        // Maus Start Listener
+        card.addEventListener('mousedown', handleStart);
+    });
+
+    // WICHTIG: Die Initialisierung muss warten, bis ALLE Ressourcen geladen sind (inkl. Bilder)
+    window.addEventListener('load', () => {
+        // Geben Sie dem Browser 100ms Zeit, das Layout zu berechnen
+        setTimeout(updateSlideshowVisuals, 100); 
+    });
+    
+    // Füge einen Resize-Listener hinzu (für Desktop <-> Mobile Wechsel oder Gerätedrehung)
+    window.addEventListener('resize', () => {
+         // Wird immer ausgeführt, um den Reset im Desktop-Modus und die Messung im Mobil-Modus zu gewährleisten
+         updateSlideshowVisuals(); 
+    });
+
+    // FALLBACK: Falls das window.load-Event schon durch ist, direkt ausführen
+    if (document.readyState === 'complete') {
+        setTimeout(updateSlideshowVisuals, 100);
+    }
+    
 });

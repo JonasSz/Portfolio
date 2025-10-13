@@ -4,7 +4,7 @@
     --accent-color: #FF5733;      /* Dezenter Akzent (z.B. für Hover/Animationen) */
     --secondary-color: #212529;   /* Fast Schwarz (für Text) */
     --background-light: #f8f9fa;  /* Heller Hintergrund für Sektionen */
-    --background-dark: #2c3238;   /* ANPASSUNG: Sehr dunkler Hintergrund für Akzent-Sektionen */
+    --background-dark: #2c3238;   /* Dunkler Hintergrund für Akzent-Sektionen */
     --font-family: 'Inter', sans-serif;
     --max-width: 1200px;
 }
@@ -299,44 +299,6 @@ h2::after {
     color: var(--primary-color);
 }
 
-/* --- NEU: Client Logos Sektion --- */
-.client-logos-section {
-    padding: 40px 0;
-    background-color: white;
-    text-align: center;
-    border-bottom: 1px solid #eee;
-}
-
-.client-logos-section h3 {
-    font-size: 1rem;
-    color: #6c757d;
-    font-weight: 400;
-    margin-bottom: 25px;
-}
-
-.logo-grid {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.logo-grid img {
-    height: 40px; 
-    width: auto;
-    opacity: 0.7;
-    filter: grayscale(100%);
-    transition: opacity 0.3s, filter 0.3s;
-}
-
-.logo-grid img:hover {
-    opacity: 1;
-    filter: none;
-}
-
-
 /* --- B. Problem/Lösung Sektion --- */
 .problem-solution-section {
     padding: 120px 0;
@@ -381,13 +343,13 @@ h2::after {
 
 /* --- C. Leistungen Sektion (Dunkel) --- */
 .services-section {
-    background-color: var(--background-dark);
-    color: white; /* Allgemeine Textfarbe für die Sektion */
+    background-color: var(--background-dark); 
+    color: white; 
 }
 
-/* Überschrift bleibt weiß */
+/* *** WICHTIGE ANPASSUNG (Überschrift Kontrast) *** */
 .services-section h2 {
-    color: white; 
+    color: white; /* Überschrift explizit weiß für besseren Kontrast */
 }
 .services-section h2::after {
     background: var(--primary-color); 
@@ -403,46 +365,46 @@ h2::after {
     flex: 1;
     padding: 40px;
     border-radius: 10px;
-    background: #3e444b; /* ANPASSUNG: Dunklerer Kartenhintergrund für Kontrast */
+    background: #3e444b; 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: background 0.3s;
 }
 
 .service-card:hover {
-    background: #4e545b; /* ANPASSUNG: Dunklerer Hover-Zustand */
+    background: #4e545b; 
 }
 
 /* Hervorhebung für die primäre Leistung (Webentwicklung) */
 .service-card.dev {
-    background: #4e545b; /* ANPASSUNG: Noch dunkler für die primäre Karte */
+    background: #4e545b; 
     border: 2px solid var(--primary-color);
     box-shadow: 0 0 30px rgba(0, 123, 255, 0.2);
 }
 
 .service-card.dev:hover {
-    background: #5a6268; /* ANPASSUNG: Dunklerer Hover-Zustand */
+    background: #5a6268; 
 }
 
-
+/* Textfarbe in Karten (Beibehaltung der Kontrast-Akzente) */
 .service-card h3 {
     font-size: 1.8rem;
     margin-bottom: 25px;
-    color: var(--primary-color); /* Überschrift bleibt primär */
+    color: #ccff66; /* Helle Akzentfarbe für H3 */
 }
 
 .service-card ul {
     list-style: none;
-    color: #f8f9fa; /* Textfarbe für Listenpunkte in dunkler Sektion */
+    color: #f8f9fa; 
 }
 
 .service-card li {
     padding: 12px 0;
-    border-bottom: 1px solid #5a6268; /* Anpassung: Dunklerer Trennstrich */
+    border-bottom: 1px solid #5a6268; 
 }
 
 .service-card li strong {
     font-weight: 700;
-    color: white; /* Starke Wörter in weiß */
+    color: #ccff66; /* Helle Akzentfarbe für starken Text */
 }
 
 .service-card li:before {
@@ -456,9 +418,10 @@ h2::after {
 
 .case-studies-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Desktop: 3 Spalten */
     gap: 50px;
     text-align: left;
+    position: relative;
 }
 
 .case-study-card {
@@ -519,40 +482,104 @@ h2::after {
     opacity: 1;
 }
 
-/* --- NEU: Testimonials Sektion --- */
-.testimonials-section {
-    background-color: var(--background-light);
-    padding: 100px 0;
+/* *** MOBILE KARUSSELL STYLES *** */
+@media (max-width: 900px) {
+    /* Deaktiviert Grid-Layout für den Stapel */
+    .case-studies-grid {
+        display: block; 
+        /* Wir entfernen min-height, da JS die Höhe dynamisch setzt */
+        margin-bottom: 50px;
+        perspective: 1000px; 
+        position: relative; 
+        overflow: hidden; 
+        transition: height 0.5s ease-in-out; /* Übergang für die Höhe beibehalten */
+    }
+    
+    .case-study-card {
+        /* Standardmäßig alle Karten absolut übereinander */
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 90%; 
+        max-width: 400px; 
+        height: auto; 
+        cursor: grab;
+        background: white; 
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+        
+        /* Unsichtbare Startposition (sollte durch JS korrigiert werden) */
+        transform: translateX(-50%) scale(1.0); 
+        opacity: 0;
+        z-index: 1; 
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out; 
+    }
+    
+    /* Zustand der obersten Karte (wird durch JS gesetzt) */
+    .case-study-card.top-card {
+        opacity: 1;
+        z-index: 10;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        pointer-events: auto;
+    }
+
+    /* Zustand der darunterliegenden Karte (wird durch JS gesetzt) */
+    .case-study-card.next-card {
+        opacity: 1;
+        z-index: 9;
+        transform: translateX(-50%) scale(0.98); 
+    }
+
+    /* Zustand, wenn die Karte weggewischt wird (durch JS hinzugefügt) */
+    .case-study-card.swiping-out {
+        transition: transform 0.5s ease-in, opacity 0.5s ease-in;
+        transform: translateX(-150%) translateY(-50px) rotate(-15deg) scale(0.8);
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    /* Bildhöhe auf Mobil */
+    .case-study-card img {
+        height: 180px;
+    }
+
+}
+/* *** ENDE SLIDESHOW STYLES *** */
+
+/* *** STYLES FÜR NAVIGATIONS-PUNKTE *** */
+.carousel-dots-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    /* Nur auf Mobil sichtbar machen, auf Desktop verstecken */
+    visibility: hidden;
+    height: 0; 
+    overflow: hidden; 
 }
 
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: left;
+@media (max-width: 900px) {
+    .carousel-dots-container {
+        visibility: visible;
+        height: auto;
+    }
 }
 
-.testimonial-grid blockquote {
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    border-top: 4px solid var(--primary-color);
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    flex-shrink: 0;
 }
 
-.testimonial-grid blockquote p {
-    font-size: 1.2rem;
-    font-style: italic;
-    color: var(--secondary-color);
-    margin-bottom: 20px;
+.carousel-dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
 }
+/* *** ENDE NAVIGATIONS-PUNKTE STYLES *** */
 
-.testimonial-grid footer {
-    font-size: 0.9rem;
-    color: #6c757d;
-}
 
 /* --- E. Garantie Sektion --- */
 .guarantee-section {
@@ -670,7 +697,7 @@ h2::after {
 }
 
 .contact-section h2 {
-    color: white; /* Überschrift bleibt weiß */
+    color: white; 
     margin-bottom: 30px;
 }
 
@@ -691,7 +718,7 @@ h2::after {
     padding: 15px;
     border: 1px solid #6c757d;
     background: #495057;
-    color: white; /* Textfarbe im Inputfeld */
+    color: white; 
     border-radius: 5px;
     font-family: var(--font-family);
     font-size: 1rem;
@@ -712,7 +739,7 @@ h2::after {
     font-size: 0.9rem;
     opacity: 0.8;
     text-align: center;
-    color: #adb5bd; /* Textfarbe für den kleinen Hinweistext */
+    color: #adb5bd; 
 }
 
 .contact-section .small-text strong {
@@ -755,7 +782,7 @@ footer a:hover {
     text-decoration: none;
     font-size: 1.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    opacity: 0; /* Standardmäßig versteckt */
+    opacity: 0; 
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
     z-index: 999;
@@ -787,7 +814,7 @@ footer a:hover {
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease-in-out;
         transform: translateX(100%);
-        overflow-y: auto; /* Scrollen bei vielen Links ermöglichen */
+        overflow-y: auto; 
     }
 
     .nav-links.nav-open {
@@ -854,7 +881,7 @@ footer a:hover {
     section { padding: 80px 0; }
 
     /* Grid-Layouts auf eine Spalte */
-    .stat-grid, .case-studies-grid, .guarantee-points, .testimonial-grid {
+    .stat-grid, .guarantee-points {
         grid-template-columns: 1fr;
         gap: 30px;
     }
@@ -865,16 +892,7 @@ footer a:hover {
         gap: 30px;
     }
 
-    /* Client Logos anpassen */
-    .logo-grid {
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-    .logo-grid img {
-        height: 30px;
-    }
-
-
+    /* Prozess-Schritte anpassen */
     .process-steps {
         grid-template-columns: 1fr;
         padding: 0;
@@ -914,6 +932,7 @@ footer a:hover {
 
 
 /* --- CSS for Animations (JS-gesteuert) --- */
+/* Diese Klassen steuern die Fading- und Slide-Up-Effekte außerhalb des Karussells */
 .hidden {
     opacity: 0;
     transform: translateY(30px);
@@ -937,16 +956,7 @@ footer a:hover {
 .service-cards .service-card:nth-child(1).hidden { transition-delay: 0s; }
 .service-cards .service-card:nth-child(2).hidden { transition-delay: 0.1s; }
 
-.case-studies-grid .case-study-card:nth-child(1).hidden { transition-delay: 0s; }
-.case-studies-grid .case-study-card:nth-child(2).hidden { transition-delay: 0.1s; }
-
 .process-steps .step:nth-child(1).hidden { transition-delay: 0s; }
 .process-steps .step:nth-child(2).hidden { transition-delay: 0.1s; }
 .process-steps .step:nth-child(3).hidden { transition-delay: 0.2s; }
 .process-steps .step:nth-child(4).hidden { transition-delay: 0.3s; }
-
-.testimonial-grid blockquote:nth-child(1).hidden { transition-delay: 0s; }
-.testimonial-grid blockquote:nth-child(2).hidden { transition-delay: 0.1s; }
-
-/* Client Logos haben keine individuelle Verzögerung, da es ein Fließband ist */
-.client-logos-section .container.hidden { transition-delay: 0.5s; }
