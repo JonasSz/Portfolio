@@ -220,6 +220,7 @@ h2::after {
     100% { background-position: 100% 100%; }
 }
 
+
 /* Subtiler Wellen-Hintergrund */
 .hero-section::before {
     content: '';
@@ -229,8 +230,8 @@ h2::after {
     width: 200%; 
     height: 200%;
     /* Subtile, hellblaue Welle */
-    background: radial-gradient(circle at 10% 20%, rgba(0, 123, 255, 0.1) 0%, transparent 50%), 
-                radial-gradient(circle at 80% 90%, rgba(0, 123, 255, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at 10% 20%, rgba(0, 123, 255, 0.233) 0%, transparent 50%), 
+                radial-gradient(circle at 80% 90%, rgba(0, 123, 255, 0.233) 0%, transparent 70%);
     
     background-size: 50% 50%;
     animation: wave 40s linear infinite; 
@@ -676,7 +677,7 @@ h2::after {
     border-radius: 50%;
     object-fit: cover;
     margin-right: 40px;
-    border: 4px solid var(--primary-color);
+    border: 3px solid var(--primary-color);
     flex-shrink: 0;
 }
 
@@ -960,3 +961,4 @@ footer a:hover {
 .process-steps .step:nth-child(2).hidden { transition-delay: 0.1s; }
 .process-steps .step:nth-child(3).hidden { transition-delay: 0.2s; }
 .process-steps .step:nth-child(4).hidden { transition-delay: 0.3s; }
+
