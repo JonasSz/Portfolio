@@ -294,3 +294,45 @@ document.addEventListener('DOMContentLoaded', () => {
     
 });
 
+function checkPassword() {
+    const input = document.getElementById('pw-input').value;
+    const overlay = document.getElementById('password-overlay');
+    const error = document.getElementById('pw-error');
+
+    // Dein Passwort: Early-Access
+    if (input === 'Early-Access') {
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Scrollen wieder erlauben
+    } else {
+        error.style.display = 'block';
+        document.getElementById('pw-input').value = ""; // Feld leeren bei Fehler
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const pwInput = document.getElementById('pw-input');
+    
+    // 1. Fokus auf das Eingabefeld setzen (User kann direkt tippen)
+    if (pwInput) {
+        pwInput.focus();
+        
+        // 2. Prüfung bei Druck auf die Enter-Taste
+        pwInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    }
+
+    // 3. E-Mail Schutz
+    const user = "jonas.it.solutions"; 
+    const domain = "gmail.com"; 
+    const mailElement = document.getElementById('mail-link');
+    
+    if(mailElement) {
+        mailElement.innerHTML = `<a href="mailto:${user}@${domain}" class="primary-cta">Jetzt Projekt anfragen</a>`;
+    }
+    
+    // 4. Scrollen verhindern, solange das Overlay aktiv ist
+    document.body.style.overflow = 'hidden';
+});

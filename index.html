@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jonas IT – Webentwickler & Automation Experte</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
+
 <body>
-
-    <a href="#hero" id="back-to-top" aria-label="Zurück nach oben">↑</a>
-
+    <div id="password-overlay"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0b; z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; color: white; font-family: sans-serif;">
+        <div
+            style="text-align: center; background: #16161a; padding: 40px; border-radius: 15px; border: 1px solid #333;">
+            <h2 style="margin-bottom: 10px; color:#e9e9e9">Portfolio geschützt</h2>
+            <p style="color: #888; margin-bottom: 20px;">Bitte gib den Zugangscode ein:</p>
+            <input type="password" id="pw-input"
+                style="padding: 12px; border-radius: 5px; border: 1px solid #444; background: #000; color: white; width: 200px;">
+            <button onclick="checkPassword()"
+                style="padding: 12px 20px; margin-left: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Enter</button>
+            <p id="pw-error" style="color: #ff4d4d; margin-top: 15px; display: none;">Zugriff verweigert</p>
+        </div>
+    </div>
     <header id="main-header">
         <div class="container">
             <nav>
@@ -34,32 +45,35 @@
     <main>
         <section id="hero" class="hero-section">
             <div class="container">
-                <h1 class="hidden">Ich baue nicht nur Websites, ich baue digitale <strong>Vorteile</strong> 🚀.</h1>
-                <p class="subline hidden">Ihr Experte für <strong>schnelle Websites</strong> und <strong>automatisierte Prozesse</strong>. 💻</p>
-                <a href="#contact" class="primary-cta hidden">Jetzt Ihr Projekt besprechen 💡</a>
-                
+                <h1 class="hidden">Ich baue nicht nur Websites, ich baue digitale <strong>Vorteile</strong>.</h1>
+                <p class="subline hidden">Ihr Experte für <strong>moderne Websites</strong> und <strong>automatisierte
+                        Prozesse</strong>. 💻</p>
+                <a href="#contact" class="primary-cta hidden">Jetzt Ihr Projekt besprechen</a>
+
                 <div class="performance-proof hidden">
                     <span>Ladezeit: <strong id="load-time">0.8s</strong></span>
-                    <span>Erfahrung: <strong>Einige Jahre</strong></span>
                 </div>
             </div>
         </section>
-        
+
         <section id="problem" class="problem-solution-section">
             <div class="container">
-                <h2>Ich löse Ihre größten digitalen Probleme 🤔</h2>
+                <h2>Ich löse Ihre größten digitalen Probleme</h2>
                 <div class="stat-grid">
                     <div class="stat-card hidden">
                         <h3>Problem: Langsame Ladezeiten 🐢</h3>
-                        <p>Ihre Seite verliert Besucher und Ranking-Positionen? Ich sorge dafür, dass Ihre Website <strong>schnell & modern</strong> wird.</p>
+                        <p>Ihre Seite verliert Besucher und Ranking-Positionen? Ich sorge dafür, dass Ihre Website
+                            <strong>schnell & modern</strong> wird.</p>
                     </div>
                     <div class="stat-card hidden">
                         <h3>Problem: Manuelle Arbeitsschritte 📉</h3>
-                        <p>Zu viel Zeit geht für langweilige, sich wiederholende Aufgaben verloren? Ich <strong>automatisiere</strong> Ihre Abläufe mit smarten Tools.</p>
+                        <p>Zu viel Zeit geht für langweilige, sich wiederholende Aufgaben verloren? Ich
+                            <strong>automatisiere</strong> Ihre Abläufe mit smarten Tools.</p>
                     </div>
                     <div class="stat-card hidden">
                         <h3>Problem: Nicht zukunftssichere Systeme 🚧</h3>
-                        <p>Ihre aktuelle Lösung stößt an ihre Grenzen? Ich baue eine moderne, <strong>leistungsstarke</strong> und <strong>flexible</strong> Basis für Ihr Wachstum.</p>
+                        <p>Ihre aktuelle Lösung stößt an ihre Grenzen? Ich baue eine moderne,
+                            <strong>leistungsstarke</strong> und <strong>flexible</strong> Basis für Ihr Wachstum.</p>
                     </div>
                 </div>
             </div>
@@ -67,15 +81,15 @@
 
         <section id="expertise" class="services-section">
             <div class="container">
-                <h2 class="hidden">Meine Expertise 🛠️</h2>
+                <h2 class="hidden">Meine Expertise</h2>
                 <div class="service-cards">
                     <div class="service-card dev hidden">
                         <h3>Web-Lösungen (Website & Apps)</h3>
                         <ul>
                             <li><strong>Individuelle</strong> Websites und Web-Apps (z.B. mit React, Next.js)</li>
-                            <li>Entwicklung des gesamten Systems von vorne bis hinten (Full-Stack)</li>
-                            <li><strong>Extrem schnelle</strong> Ladezeiten und Performance-Optimierung</li>
-                            <li>Integration von Content Management Systemen (CMS)</li>
+                            <li>Entwicklung des gesamten Systems von <strong>vorne bis hinten</strong> (Full-Stack)</li>
+                            <li><strong>Schnelle</strong> Ladezeiten und Performance-Optimierung</li>
+                            <li><strong>Zeitgemäß</strong> ansprechende Websites</li>
                         </ul>
                     </div>
                     <div class="service-card hidden">
@@ -92,51 +106,46 @@
         </section>
 
         <section id="portfolio" class="portfolio-section">
-    <div class="container">
-        <h2>Ergebnisse, die für sich sprechen: Meine Case Studies ✨</h2>
-        
-        <div class="case-studies-grid portfolio-carousel-wrapper">
-            <article class="case-study-card">
-                <img src="coffee.jpg" alt="Projekt A: QR-Treueprogramm für ein lokales Café">
-                <div class="case-study-content">
-                    <h3>Café: <strong>Doppelte</strong> Kundenbindung</h3>
-                    <p>Das Problem: Stammkunden schwer zu erkennen.
-                        <strong>Die Lösung:</strong> QR-Treueprogramm mit automatischen Gutscheinen.
-                        Ergebnis: Mehr Wiederkehrer, höherer Umsatz.</p>
+            <div class="container">
+                <h2>Ergebnisse, die für sich sprechen: Anwendungsbeispiele</h2>
+                <div class="case-studies-grid portfolio-carousel-wrapper">
+                    <article class="case-study-card">
+                        <img src="coffee.jpg" alt="Projekt A">
+                        <div class="case-study-content">
+                            <h3>Café: <strong>Doppelte</strong> Kundenbindung</h3>
+                            <p>Das Problem: Stammkunden schwer zu erkennen. <strong>Die Lösung:</strong>
+                                QR-Treueprogramm mit automatischen Gutscheinen. Ergebnis: Mehr Wiederkehrer, höherer
+                                Umsatz.</p>
+                        </div>
+                    </article>
+                    <article class="case-study-card">
+                        <img src="calendar.png" alt="Projekt B">
+                        <div class="case-study-content">
+                            <h3>Friseursalon: <strong>80% weniger</strong> Anrufe.</h3>
+                            <p>Das Problem: Ständige Unterbrechung durch Anrufe. <strong>Die Lösung:</strong>
+                                Vollautomatisiertes Online-Buchungssystem, das mit dem Kalender synchronisiert.</p>
+                        </div>
+                    </article>
+                    <article class="case-study-card">
+                        <img src="donut.png" alt="Projekt C">
+                        <div class="case-study-content">
+                            <h3>Bäckerei: Vorbestellungen in <strong>unter 1 Min.</strong></h3>
+                            <p>Das Problem: Lange Schlangen. <strong>Die Lösung:</strong> Responsive Website mit
+                                integriertem Vorbestell- und Abhol-System.</p>
+                        </div>
+                    </article>
+                    <article class="case-study-card">
+                        <img src="tools.png" alt="Projekt D">
+                        <div class="case-study-content">
+                            <h3>Handwerk: <strong>3x mehr</strong> qualifizierte Anfragen.</h3>
+                            <p>Das Problem: Ungefilterte Anfragen. <strong>Die Lösung:</strong> Blitzschnelle Website
+                                mit Lead-Formular, das die Auftragsgröße vorfiltert.</p>
+                        </div>
+                    </article>
                 </div>
-            </article>
-            
-            <article class="case-study-card">
-                <img src="calendar.png" alt="Projekt B: Online-Terminbuchung für Friseursalon">
-                <div class="case-study-content">
-                    <h3>Friseursalon: <strong>80% weniger</strong> Anrufe & Termin-Chaos.</h3>
-                    <p>Das Problem: Ständige Unterbrechung durch Anrufe im Tagesgeschäft. <strong>Die Lösung:</strong> Vollautomatisiertes Online-Buchungssystem, das mit dem Kalender synchronisiert.</p>
-                </div>
-            </article>
-            
-            <article class="case-study-card">
-                <img src="donut.png" alt="Projekt C: Vorbestellsystem für lokale Bäckerei">
-                <div class="case-study-content">
-                    <h3>Bäckerei/Metzgerei: Vorbestellungen in <strong>unter 1 Minute</strong> abwickeln.</h3>
-                    <p>Das Problem: Lange Schlangen und fehlerhafte manuelle Bestellzettel. <strong>Die Lösung:</strong> Responsive Website mit integriertem Vorbestell- und Abhol-System.</p>
-                </div>
-            </article>
-            
-            <article class="case-study-card">
-                <img src="tools.png" alt="Projekt D: Lead-Generierung für Handwerksbetrieb">
-                <div class="case-study-content">
-                    <h3>Handwerksbetrieb: <strong>3x mehr</strong> qualifizierte Anfragen.</h3>
-                    <p>Das Problem: Viele allgemeine Anfragen von Privatpersonen ohne Budget. <strong>Die Lösung:</strong> Blitzschnelle Website mit Lead-Formular, das die Auftragsgröße vorfiltert.</p>
-                </div>
-            </article>
-
-        </div>
-        
-        <div class="carousel-dots-container">
+                <div class="carousel-dots-container"></div>
             </div>
-
-    </div>
-</section>
+        </section>
 
         <section id="guarantee" class="guarantee-section">
             <div class="container">
@@ -144,15 +153,15 @@
                 <div class="guarantee-points">
                     <div class="hidden">
                         <h3>1. Performance-Versprechen ⚡</h3>
-                        <p>Ich garantiere Ihnen extrem schnelle Ladezeiten, bevor die Seite live geht.</p>
+                        <p>Ich garantiere Ihnen schnelle Ladezeiten, bevor die Seite live geht.</p>
                     </div>
                     <div class="hidden">
                         <h3>2. Saubere Code-Basis 🧹</h3>
-                        <p>Sie erhalten klaren, wartungsfreundlichen Code, den jeder andere Entwickler leicht verstehen kann.</p>
+                        <p>Sie erhalten klaren, wartungsfreundlichen Code.</p>
                     </div>
                     <div class="hidden">
                         <h3>3. Nachbetreuung 🤝</h3>
-                        <p>Ich stehe auch nach dem Start für Anpassungen und Optimierungen bereit, damit alles reibungslos läuft.</p>
+                        <p>Ich stehe auch nach dem Start für Anpassungen bereit.</p>
                     </div>
                 </div>
             </div>
@@ -160,47 +169,70 @@
 
         <section id="process" class="process-section">
             <div class="container">
-                <h2>Mein transparenter und effizienter Prozess ⚙️</h2>
+                <h2>Mein transparenter Prozess ⚙️</h2>
                 <div class="process-steps">
                     <div class="step hidden">
-                        <h4>1. Analyse & Planung</h4>
-                        <p>Wir verstehen Ihr Ziel und definieren die beste technische Strategie.</p>
+                        <h4>1. Analyse</h4>
+                        <p>Ziele definieren.</p>
                     </div>
                     <div class="step hidden">
-                        <h4>2. Gestaltung & Aufbau</h4>
-                        <p>Erstellung von Prototypen und Design-Vorschlägen, um die Vision festzulegen.</p>
+                        <h4>2. Aufbau</h4>
+                        <p>Design & Prototyp.</p>
                     </div>
                     <div class="step hidden">
-                        <h4>3. Entwicklung & Umsetzung</h4>
-                        <p>Agile Programmierung der Lösung und Integration aller Automatisierungen.</p>
+                        <h4>3. Dev</h4>
+                        <p>Programmierung.</p>
                     </div>
                     <div class="step hidden">
-                        <h4>4. Testing & Go-Live</h4>
-                        <p>Gründliche Tests, Performance-Check und Veröffentlichung der fertigen Lösung.</p>
-                    </div>
-                </div>
-                
-                <div id="about" class="about-me hidden">
-                    <img src="profilbild.jpg" alt="Profilbild von Jonas">
-                    <div>
-                        <h3>Über mich: Ihr Partner für digitale Exzellenz</h3>
-                        <p>Ich bin <strong>Jonas</strong>, Ihr Entwickler, spezialisiert auf <strong>schnelle und automatisierte Web-Lösungen</strong>. Mein Ziel ist es, nicht nur ansprechende Oberflächen zu bauen, sondern <strong>echte Mehrwerte</strong> zu schaffen, die Ihre Effizienz und Ihren Umsatz steigern. Ich arbeite transparent, fokussiert und immer mit Blick auf die Zukunftsfähigkeit Ihrer digitalen Produkte.</p>
+                        <h4>4. Go-Live</h4>
+                        <p>Testing & Start.</p>
                     </div>
                 </div>
 
+                <div id="about" class="about-me hidden">
+                    <img src="profilbild.jpg" alt="Jonas">
+                    <div>
+                        <h3>Wissenschaftlich fundierte Web-Lösungen</h3>
+                        <p>Studien belegen: Veraltete Websites schrecken Kunden in nur <strong>50 Millisekunden</strong>  ab. Ich sorge dafür,
+                            dass Ihr erster Eindruck überzeugt.</p>
+                        <p>Zusätzlich eliminiere ich durch <strong>Automatisierung</strong> Ihre lästigen
+                            Alltagsaufgaben – damit Sie wieder Zeit für das Wesentliche haben.</p> <br>
+                        <h3>Woher ich das kann?</h3>
+                        <p>Frühes Interesse im Bereich IT</p>
+                        <p> + entsprechende Ausbildung</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
+        <section id="contact" style="padding: 100px 0; text-align: center;">
             <div class="container">
-                <h2>Starten wir Ihr Projekt 💬</h2>
-                <form id="contact-form" action="#" method="POST">
-                    <input type="text" name="name" placeholder="Ihr Name" required>
-                    <input type="email" name="email" placeholder="Ihre E-Mail-Adresse" required>
-                    <textarea name="message" rows="5" placeholder="Beschreiben Sie kurz Ihr Projekt und Ihre größten Herausforderungen." required></textarea>
-                    <button type="submit" class="primary-cta">Unverbindlich anfragen</button>
-                </form>
-                <p class="small-text">Ich antworte in der Regel innerhalb von 24 Stunden. <strong>Ihre Daten werden vertraulich behandelt.</strong></p>
+                <h2>Projekt anfragen</h2>
+                <br>
+                <span id="mail-link">E-Mail wird geladen...</span>
+            </div>
+        </section>
+
+        <section id="legal-section" style="background: #fff; padding: 60px 0; border-top: 1px solid #eee;">
+            <div class="container" style="text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <div id="impressum">
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Impressum</h3>
+                    <p style="font-size: 0.9rem; color: #666;">
+                        Jonas Schulz<br>
+                        Schillerstraße 23<br>
+                        72358 Dormettingen<br><br>
+                        <strong>Kontakt:</strong><br>
+                        E-Mail: jonas.it.solutions@gmail.com<br>
+                    </p>
+                </div>
+                <div id="datenschutz">
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Datenschutz</h3>
+                    <p style="font-size: 0.9rem; color: #666;">
+                        Die Nutzung dieser Website ist ohne Angabe personenbezogener Daten möglich. Wenn Sie mir eine
+                        E-Mail senden, werden diese Daten zur Bearbeitung Ihrer Anfrage gespeichert. Es findet kein
+                        Tracking statt.
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -208,10 +240,14 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Jonas IT. Alle Rechte vorbehalten. | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+            <p>&copy; 2026 Jonas IT. Alle Rechte vorbehalten. | <a href="#impressum">Impressum</a> | <a
+                    href="#datenschutz">Datenschutz</a></p>
         </div>
     </footer>
 
+    <a href="#" id="back-to-top">↑</a>
+
     <script src="script.js"></script>
 </body>
+
 </html>
